@@ -14,8 +14,8 @@
         $scope.$watch('name', function() {
           var queryStr = $scope.name;
           queryStr = encodeURIComponent(queryStr.trim());
-          console.log(queryStr);
-          var dataurl ='http://gdata.youtube.com/feeds/api/videos?q="' + queryStr + '"&orderby=relevance&alt=json&videoDefinition=high&v=2&safeSearc=strict';
+          //console.log(queryStr);
+          var dataurl ='http://gdata.youtube.com/feeds/api/videos?q="' + queryStr + '"&orderby=relevance&alt=json&videoDefinition=high&v=2&safeSearch=strict';
           $http.get(dataurl).success(function(data){
           $scope.vids = data.feed.entry;
         });
