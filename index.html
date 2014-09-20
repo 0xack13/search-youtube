@@ -1,53 +1,43 @@
-<head >
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> 
-
-
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
- 
-
-
-</head>
-<body >
-  <div ng-app="bindExample" ng-controller="PhoneListCtrl">
-    <script type="text/javascript">
-
-  angular.module('bindExample', [])
-    .controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
-        $scope.name = 'javascript';
-        $scope.$watch('name', function() {
-          //console.log(newValue);
-          //console.log(oldValue);
-          var dataurl ='http://gdata.youtube.com/feeds/api/videos?q=' + $scope.name + '&orderby=rating&alt=json';
-          //console.log(dataurl);
-          $http.get(dataurl).success(function(data){
-            $scope.vids = data.feed.entry;
-          });
-        });        
-        }]);
-</script> 
-    <form>
-    <input type="text" ng-model="name" >
-    <br>Searching for: <span ng-bind="name"></span>!
-
- <table>
-    <tr ng-repeat="vid in vids | filter:query">
-      <td>
-        <iframe width="300" height="169" src="{{vid.media$group.media$content[0].url}}" frameborder="0" allowfullscreen></iframe>
-        <td>
-      <td>
-        <h3>{{vid.title.$t}}</h3>
-        {{vid.content.$t}}
-        <td>
-    </tr>
- 
- </table>
-</form>
-</div>
-
-
- 
-
-</body>
+<!doctype html>
+<html>
+  <head >
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+  </head>
+  <body >
+    <div ng-app="bindExample" ng-controller="PhoneListCtrl">
+      <script type="text/javascript">
+      angular.module('bindExample', [])
+      .controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
+      $scope.name = 'javascript';
+      $scope.$watch('name', function() {
+      //console.log(newValue);
+      //console.log(oldValue);
+      var dataurl ='http://gdata.youtube.com/feeds/api/videos?q=' + $scope.name + '&orderby=rating&alt=json';
+      //console.log(dataurl);
+      $http.get(dataurl).success(function(data){
+      $scope.vids = data.feed.entry;
+      });
+      });
+      }]);
+      </script>
+      <form>
+        <input type="text" ng-model="name" >
+        <br>Searching for: <span ng-bind="name"></span>!
+        <table>
+          <tr ng-repeat="vid in vids | filter:query">
+            <td>
+              <iframe width="300" height="169" src="{{vid.media$group.media$content[0].url}}" frameborder="0" allowfullscreen></iframe>
+              <td>
+                <td>
+                  <h3>{{vid.title.$t}}</h3>
+                  {{vid.content.$t}}
+                </td>
+              </td>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
 </html>
