@@ -1,0 +1,11 @@
+body, iframe {
+	background-color: black;
+	font-size: 22px;
+}
+h3, td {
+	font-size: 22px;
+	color: white;
+}
+input {
+	font-size: 40px;
+}
