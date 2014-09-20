@@ -8,17 +8,17 @@
     <div ng-app="bindExample" ng-controller="PhoneListCtrl">
       <script type="text/javascript">
       angular.module('bindExample', [])
-      .controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
-      $scope.name = 'javascript';
-      $scope.$watch('name', function() {
-      //console.log(newValue);
-      //console.log(oldValue);
-      var dataurl ='http://gdata.youtube.com/feeds/api/videos?q=' + $scope.name + '&orderby=rating&alt=json';
-      //console.log(dataurl);
-      $http.get(dataurl).success(function(data){
-      $scope.vids = data.feed.entry;
-      });
-      });
+        .controller('PhoneListCtrl', ['$scope', '$http', function($scope, $http) {
+        $scope.name = 'javascript';
+        $scope.$watch('name', function() {
+          var queryStr = $scope.name;
+          queryStr = encodeURIComponent(queryStr.trim());
+          console.log(queryStr);
+          var dataurl ='http://gdata.youtube.com/feeds/api/videos?q="' + queryStr + '"&orderby=relevance&alt=json&videoDefinition=high';
+          $http.get(dataurl).success(function(data){
+          $scope.vids = data.feed.entry;
+        });
+        });
       }]);
       </script>
       <form>
