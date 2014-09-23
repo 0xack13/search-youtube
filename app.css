@@ -1,0 +1,13 @@
+body, iframe {
+	background-color: black;
+	font-size: 22px;
+	font-family: Helvetica;
+}
+h3, td {
+	font-size: 22px;
+	color: white;
+}
+input {
+	font-size: 40px;
+	font-family: Helvetica;
+}
